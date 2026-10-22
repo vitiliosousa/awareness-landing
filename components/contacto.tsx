@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Clock01Icon, Location01Icon, Mail01Icon, Tick02Icon, WhatsappIcon } from "@hugeicons/core-free-icons";
@@ -13,7 +14,7 @@ const campo =
 
 /**
  * O pedido de demonstração. Ainda não há servidor: o envio abre o email de quem preenche,
- * com o pedido já escrito para a MozCyber. Assim nada se perde e ninguém julga que enviou o que não enviou.
+ * com o pedido já escrito para a nossa equipa. Assim nada se perde e ninguém julga que enviou o que não enviou.
  */
 export function Contacto() {
   const [enviado, setEnviado] = useState(false);
@@ -163,7 +164,13 @@ export function Contacto() {
                 <button type="submit" className="botao-marcador inline-flex h-14 w-full items-center justify-center rounded-full bg-tinta text-base font-semibold text-white transition-colors hover:text-tinta">
                   Pedir demonstração
                 </button>
-                <p className="text-center text-sm text-suave">Abre o seu email com o pedido já escrito, para enviar a {CONTACTOS.email}.</p>
+                <p className="text-center text-sm text-suave">
+                  Abre o seu email com o pedido já escrito, para enviar a {CONTACTOS.email}. Veja como tratamos os seus dados na{" "}
+                  <Link href="/privacidade" className="font-semibold text-tinta underline underline-offset-2 hover:no-underline">
+                    política de privacidade
+                  </Link>
+                  .
+                </p>
               </form>
             )}
           </div>

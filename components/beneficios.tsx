@@ -6,7 +6,7 @@ type Beneficio = { icone: IconSvgElement; titulo: string; texto: string };
 // Só o que a plataforma já faz: convites por link, importação por Excel, relatórios em PDF,
 // certificados automáticos, lembretes, conteúdo em português com casos locais.
 const beneficios: Beneficio[] = [
-  { icone: Rocket01Icon, titulo: "Arranca sem projecto de TI", texto: "Não há nada para instalar. A MozCyber importa a lista da equipa, até a partir de um Excel, e cada pessoa entra por um link." },
+  { icone: Rocket01Icon, titulo: "Arranca sem projecto de TI", texto: "Não há nada para instalar. Importamos a lista da sua equipa, até a partir de um Excel, e cada pessoa entra por um link." },
   { icone: Certificate01Icon, titulo: "Provas para auditorias", texto: "Relatórios mensais em PDF e um certificado para cada pessoa que atinge o acerto mínimo. Fica tudo guardado, mês a mês." },
   { icone: AnalyticsUpIcon, titulo: "Evolução que se vê", texto: "Participação e acerto por departamento e por tema, comparados com os meses anteriores. Sabe onde agir primeiro." },
   { icone: LanguageCircleIcon, titulo: "Na língua da equipa", texto: "Tudo em português, com situações do dia a dia em Moçambique: o falso fornecedor, o SMS da carteira móvel, a chamada do «banco»." },

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon, Menu01Icon } from "@hugeicons/core-free-icons";
@@ -7,11 +8,11 @@ import { Logo } from "@/components/logo";
 import { NOME } from "@/lib/marca";
 
 const ligacoes = [
-  { href: "#como-funciona", rotulo: "Como funciona" },
-  { href: "#temas", rotulo: "Temas" },
-  { href: "#para-quem", rotulo: "Para quem é" },
-  { href: "#perguntas", rotulo: "Perguntas" },
-  { href: "#contacto", rotulo: "Contacto" },
+  { href: "/#como-funciona", rotulo: "Como funciona" },
+  { href: "/#temas", rotulo: "Temas" },
+  { href: "/#para-quem", rotulo: "Para quem é" },
+  { href: "/#perguntas", rotulo: "Perguntas" },
+  { href: "/#contacto", rotulo: "Contacto" },
 ];
 
 /** Uma barra que flutua por cima da página, como uma cápsula, e ganha fundo quando se rola. */
@@ -40,23 +41,23 @@ export function Cabecalho() {
           rolou || aberto ? "bg-papel/85 shadow-[0_8px_30px_-16px_rgba(22,33,58,0.35)] ring-1 ring-tinta/5 backdrop-blur-md" : "bg-transparent"
         }`}
       >
-        <a href="#topo" aria-label={`${NOME}, início`}>
+        <Link href="/#topo" aria-label={`${NOME}, início`}>
           <Logo />
-        </a>
+        </Link>
 
         <nav aria-label="Principal" className="hidden items-center gap-8 md:flex">
           {ligacoes.map((l) => (
-            <a key={l.href} href={l.href} className="group relative text-[15px] font-medium text-tinta/75 transition-colors hover:text-tinta">
+            <Link key={l.href} href={l.href} className="group relative text-[15px] font-medium text-tinta/75 transition-colors hover:text-tinta">
               {l.rotulo}
               <span aria-hidden="true" className="absolute -bottom-1 left-0 h-[3px] w-full origin-left scale-x-0 rounded-full bg-marcador transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href="#contacto" className="botao-marcador hidden h-12 items-center rounded-full bg-tinta px-6 text-[15px] font-semibold text-white transition-colors hover:text-tinta sm:inline-flex">
+          <Link href="/#contacto" className="botao-marcador hidden h-12 items-center rounded-full bg-tinta px-6 text-[15px] font-semibold text-white transition-colors hover:text-tinta sm:inline-flex">
             Pedir demonstração
-          </a>
+          </Link>
           <button
             type="button"
             onClick={() => setAberto((v) => !v)}
@@ -72,13 +73,13 @@ export function Cabecalho() {
       {aberto && (
         <nav aria-label="Menu" className="mx-auto mt-2 max-w-[1240px] rounded-[24px] bg-papel/95 p-3 shadow-[0_16px_40px_-20px_rgba(22,33,58,0.45)] ring-1 ring-tinta/5 backdrop-blur-md md:hidden">
           {ligacoes.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setAberto(false)} className="block rounded-2xl px-4 py-3.5 text-lg font-medium hover:bg-tinta/5">
+            <Link key={l.href} href={l.href} onClick={() => setAberto(false)} className="block rounded-2xl px-4 py-3.5 text-lg font-medium hover:bg-tinta/5">
               {l.rotulo}
-            </a>
+            </Link>
           ))}
-          <a href="#contacto" onClick={() => setAberto(false)} className="mt-2 flex h-12 items-center justify-center rounded-full bg-tinta font-semibold text-white">
+          <Link href="/#contacto" onClick={() => setAberto(false)} className="mt-2 flex h-12 items-center justify-center rounded-full bg-tinta font-semibold text-white">
             Pedir demonstração
-          </a>
+          </Link>
         </nav>
       )}
     </header>

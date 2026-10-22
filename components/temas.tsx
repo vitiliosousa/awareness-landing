@@ -103,7 +103,7 @@ export function Temas() {
         <p className="revelar mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-lg text-suave">
           <span aria-hidden="true" className="h-1.5 w-5 rounded-full bg-marcador" />
           <span>
-            <span className="font-semibold text-tinta">E muitos outros.</span> A MozCyber acrescenta temas novos sempre que aparece um tipo de ataque diferente.
+            <span className="font-semibold text-tinta">E muitos outros.</span> Acrescentamos temas novos sempre que aparece um tipo de ataque diferente.
           </span>
         </p>
       </div>

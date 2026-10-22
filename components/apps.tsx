@@ -44,8 +44,8 @@ const paineis: Painel[] = [
     fundo: "bg-noite text-white",
   },
   {
-    id: "app-mozcyber",
-    quem: "A MozCyber trata do resto",
+    id: "app-servico",
+    quem: "A nossa equipa trata do resto",
     titulo: (
       <>
         Sem trabalho extra <strong className="font-extrabold">para a sua equipa de TI.</strong>
@@ -70,7 +70,7 @@ const paineis: Painel[] = [
 ];
 
 /**
- * Como funciona: a app da equipa, a app do gestor e o trabalho da MozCyber.
+ * Como funciona: a app da equipa, a app do gestor e o trabalho da nossa equipa.
  * No computador a secção fica parada e os três painéis passam na horizontal enquanto se rola,
  * com a linha do marcador a mostrar onde se está (como as especialidades da Bonança).
  * No telemóvel, ou sem suporte de animações ligadas ao scroll, os painéis ficam uns por baixo dos outros.
@@ -86,7 +86,7 @@ export function Apps() {
           </h2>
         </div>
         <p className="revelar max-w-md text-lg leading-relaxed text-suave lg:justify-self-end">
-          O {NOME} junta o treino de cada pessoa, a visão de quem gere e o trabalho da MozCyber, que prepara tudo, todos os meses.
+          O {NOME} junta o treino de cada pessoa, a visão de quem gere e o trabalho da nossa equipa, que prepara tudo, todos os meses.
         </p>
       </div>
 
@@ -125,7 +125,7 @@ export function Apps() {
             <div className="mt-3 grid grid-cols-3 text-sm font-medium text-suave">
               <span>A equipa</span>
               <span className="text-center">O gestor</span>
-              <span className="text-right">A MozCyber</span>
+              <span className="text-right">A nossa equipa</span>
             </div>
           </div>
         </div>

@@ -1,16 +1,17 @@
+import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { CONTACTOS } from "@/lib/contactos";
 import { NOME } from "@/lib/marca";
 
 const ligacoes = [
-  { href: "#ataques", rotulo: "Os ataques" },
-  { href: "#beneficios", rotulo: "O que a empresa ganha" },
-  { href: "#metodo", rotulo: "O método PARE" },
-  { href: "#como-funciona", rotulo: "Como funciona" },
-  { href: "#para-quem", rotulo: "Para quem é" },
-  { href: "#temas", rotulo: "Temas" },
-  { href: "#perguntas", rotulo: "Perguntas frequentes" },
-  { href: "#contacto", rotulo: "Pedir demonstração" },
+  { href: "/#ataques", rotulo: "Os ataques" },
+  { href: "/#beneficios", rotulo: "O que a empresa ganha" },
+  { href: "/#metodo", rotulo: "O método PARE" },
+  { href: "/#como-funciona", rotulo: "Como funciona" },
+  { href: "/#para-quem", rotulo: "Para quem é" },
+  { href: "/#temas", rotulo: "Temas" },
+  { href: "/#perguntas", rotulo: "Perguntas frequentes" },
+  { href: "/#contacto", rotulo: "Pedir demonstração" },
 ];
 
 /** O rodapé: o resumo, as ligações, o contacto e o nome em grande, como o "BONANÇA" no fim da Bonança. */
@@ -20,16 +21,16 @@ export function Rodape() {
       <div className="mx-auto grid max-w-[1240px] gap-10 px-6 pb-10 pt-16 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] lg:pt-20">
         <div>
           <Logo claro />
-          <p className="mt-5 max-w-xs leading-relaxed text-white/65">Treino de cibersegurança para as equipas das empresas moçambicanas, preparado pela MozCyber todos os meses.</p>
+          <p className="mt-5 max-w-xs leading-relaxed text-white/65">Treino de cibersegurança para as equipas das empresas moçambicanas, com um desafio novo todos os meses.</p>
         </div>
         <nav aria-label="Rodapé">
           <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/45">Nesta página</p>
           <ul className="mt-4 space-y-2.5">
             {ligacoes.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="text-white/80 transition-colors hover:text-marcador">
+                <Link href={l.href} className="text-white/80 transition-colors hover:text-marcador">
                   {l.rotulo}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -57,11 +58,19 @@ export function Rodape() {
 
       <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-3 border-t border-white/10 px-6 py-6 text-sm text-white/45">
         <p>
-          {NOME} · uma plataforma MozCyber
+          {NOME} · Treino de cibersegurança para equipas
         </p>
-        <a href="#topo" className="transition-colors hover:text-white">
-          Voltar ao início ↑
-        </a>
+        <span className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <Link href="/privacidade" className="transition-colors hover:text-white">
+            Política de privacidade
+          </Link>
+          <Link href="/termos" className="transition-colors hover:text-white">
+            Termos de uso
+          </Link>
+          <a href="#" className="transition-colors hover:text-white">
+            Voltar ao topo ↑
+          </a>
+        </span>
       </div>
 
       {/* O nome em grande, a sair pelo fundo. */}

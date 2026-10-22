@@ -5,14 +5,14 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Add01Icon } from "@hugeicons/core-free-icons";
 import { NOME } from "@/lib/marca";
 
-// As respostas descrevem só o que a plataforma já faz. Tempo por mês e preço ficam por confirmar com a MozCyber.
+// As respostas descrevem só o que a plataforma já faz. Tempo por mês e preço ficam por confirmar.
 const perguntas = [
   { p: "É preciso instalar alguma coisa?", r: "Não. Cada pessoa entra por um link enviado por email, no navegador do computador do trabalho. Também funciona no telemóvel, para quem preferir." },
-  { p: "Como chegam os colaboradores à plataforma?", r: "A MozCyber importa a lista da sua equipa, por exemplo a partir de um ficheiro Excel, e envia os convites. Quem ainda não entrou recebe lembretes." },
+  { p: "Como chegam os colaboradores à plataforma?", r: "Importamos a lista da sua equipa, por exemplo a partir de um ficheiro Excel, e enviamos os convites. Quem ainda não entrou recebe lembretes." },
   { p: "Quanto tempo leva por mês?", r: "Pouco. Os exercícios são curtos e cada pessoa faz o desafio do mês ao seu ritmo, sem ter de parar o trabalho." },
   { p: "Que temas são treinados?", r: "Emails falsos, burlas por SMS e WhatsApp, engenharia social, palavras-passe, protecção de dados, segurança física, telemóveis e muitos outros. Os desafios insistem mais onde a sua equipa acerta menos." },
   { p: "O que vê quem gere a empresa?", r: "A participação e o acerto por departamento e por tema, quem precisa de acompanhamento e um relatório mensal por email. Pode lembrar quem ainda não fez e exportar as listas para o Excel." },
-  { p: "Os resultados de cada pessoa ficam protegidos?", r: "Cada empresa vê apenas os seus dados. Os resultados individuais são vistos pelo gestor da própria empresa e pela equipa da MozCyber que acompanha o treino." },
+  { p: "Os resultados de cada pessoa ficam protegidos?", r: "Cada empresa vê apenas os seus dados. Os resultados individuais são vistos pelo gestor da própria empresa e pela nossa equipa, que acompanha o treino." },
   { p: "Está tudo em português?", r: `Sim. Todo o conteúdo do ${NOME} é em português, com situações do dia a dia em Moçambique.` },
   { p: "Quanto custa?", r: "Depende do número de pessoas que vão treinar. Peça uma demonstração e enviamos uma proposta para a sua empresa." },
 ];
