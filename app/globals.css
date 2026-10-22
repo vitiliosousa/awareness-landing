@@ -1,26 +1,429 @@
 @import "tailwindcss";
 
+/* Os mesmos tokens das apps (paleta Vigia, versão clara).
+   A landing é sempre clara; as secções escuras usam "noite". O amarelo é o marcador:
+   só aparece para assinalar um sinal de alerta e no gesto do botão principal. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --tinta: #16213a;
+  --tinta-2: #24314f;
+  --noite: #16213a;
+  --papel: #f4f5f1;
+  --superficie: #ffffff;
+  --linha: #dfe2da;
+  --texto-suave: #5a6275;
+  --indigo: #2f3fb8;
+  --marcador: #f2b233;
+  --marcador-claro: #fcefcf;
+  --risco: #b02f25;
+  --nevoa: #e4e8ee;
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-tinta: var(--tinta);
+  --color-tinta-2: var(--tinta-2);
+  --color-noite: var(--noite);
+  --color-papel: var(--papel);
+  --color-superficie: var(--superficie);
+  --color-linha: var(--linha);
+  --color-suave: var(--texto-suave);
+  --color-indigo: var(--indigo);
+  --color-marcador: var(--marcador);
+  --color-marcador-claro: var(--marcador-claro);
+  --color-risco: var(--risco);
+  --color-nevoa: var(--nevoa);
+  --font-sans: var(--font-plex-sans);
+  --font-titulo: var(--font-schibsted);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--font-plex-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-schibsted), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- O marcador ----------
+   Um traço de marcador amarelo por trás do texto, que se desenha da esquerda para a direita. */
+.marcado {
+  background-image: linear-gradient(100deg, transparent 0.15em, var(--marcador) 0.15em, var(--marcador) calc(100% - 0.15em), transparent calc(100% - 0.15em));
+  background-size: 100% 42%;
+  background-position: 0 88%;
+  background-repeat: no-repeat;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 0.12em;
+  margin: 0 -0.12em;
+}
+
+@keyframes marcar {
+  from {
+    background-size: 0% 42%;
+  }
+}
+
+.marcado-anim {
+  animation: marcar 700ms cubic-bezier(0.6, 0, 0.2, 1) both;
+}
+
+/* ---------- Entradas ----------
+   Curtas e só em CSS: o conteúdo aparece mesmo que o JavaScript ainda não tenha chegado. */
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.subir {
+  animation: subir 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* A palavra gigante sobe por trás de uma máscara. */
+@keyframes emergir {
+  from {
+    transform: translateY(38%);
+    opacity: 0;
+  }
+}
+
+.emergir {
+  animation: emergir 1100ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+/* Os cartões de exemplo mexem-se quase nada: estão vivos, não a dançar. */
+@keyframes pairar {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.pairar {
+  animation: pairar 7s ease-in-out infinite;
+}
+
+/* A faixa dos temas: duas cópias seguidas, desliza metade e recomeça sem salto. */
+@keyframes deslizar {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* O botão principal: ao passar o rato, o marcador passa por baixo do texto. */
+.botao-marcador {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.botao-marcador::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--marcador);
+  transform: translateX(-101%);
+  transition: transform 420ms cubic-bezier(0.6, 0, 0.2, 1);
+}
+.botao-marcador:hover::before,
+.botao-marcador:focus-visible::before {
+  transform: translateX(0);
+}
+
+/* ---------- Ao rolar ----------
+   Entradas ligadas ao scroll, sem JavaScript. Onde o browser não as suporta, o conteúdo
+   aparece logo, sem animação: nunca fica escondido à espera de nada. */
+@supports (animation-timeline: view()) {
+  .revelar {
+    animation: subir linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+  .revelar .marcado:not(.marcado-anim) {
+    animation: marcar linear both;
+    animation-timeline: view();
+    animation-range: entry 40% cover 40%;
+  }
+}
+
+/* O momento: o ecrã acende devagar, como uma notificação a chegar. */
+@keyframes acender {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+.momento-brilho {
+  animation: acender 3.2s ease-in-out infinite;
+}
+
+@supports (animation-timeline: view()) {
+  /* A fotografia aproxima-se enquanto a secção atravessa o ecrã. */
+  @keyframes aproximar {
+    from {
+      transform: scale(1.14);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  .momento-foto {
+    animation: aproximar linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 55%;
+  }
+  .momento {
+    view-timeline-name: --momento;
+  }
+  /* A notificação chega a meio, e só depois o marcador assinala o pedido. */
+  @keyframes chegar {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+    }
+  }
+  .momento-aviso > div {
+    animation: chegar linear both;
+    animation-timeline: --momento;
+    animation-range: entry 70% cover 45%;
+  }
+  .momento-aviso .marcado {
+    animation: marcar linear both;
+    animation-timeline: --momento;
+    animation-range: cover 40% cover 58%;
+  }
+}
+
+/* ---------- O método ----------
+   No computador o trilho é alto e o conteúdo fica parado (sticky); o scroll acende os passos
+   um a um e enche a linha do marcador. Fora do computador, ou sem suporte, ficam todos acesos. */
+@supports (animation-timeline: view()) {
+  @media (min-width: 1024px) {
+    .metodo-trilho {
+      height: 220vh;
+      view-timeline-name: --metodo;
+    }
+    @keyframes encher {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+    .metodo-linha {
+      animation: encher linear both;
+      animation-timeline: --metodo;
+      animation-range: contain 0% contain 85%;
+    }
+    @keyframes acender-passo {
+      from {
+        opacity: 0.32;
+        transform: translateY(14px);
+      }
+    }
+    .metodo-trilho .metodo-passo.revelar {
+      animation: acender-passo linear both;
+      animation-timeline: --metodo;
+      animation-range: contain calc(var(--i) * 22%) contain calc(var(--i) * 22% + 12%);
+    }
+    @keyframes letra-marcada {
+      from {
+        background-size: 100% 0%;
+      }
+      to {
+        background-size: 100% 34%;
+      }
+    }
+    .metodo-letra {
+      background-image: linear-gradient(var(--marcador), var(--marcador));
+      background-repeat: no-repeat;
+      background-position: 0 86%;
+      background-size: 100% 34%;
+      animation: letra-marcada linear both;
+      animation-timeline: --metodo;
+      animation-range: contain calc(var(--i) * 22% + 7%) contain calc(var(--i) * 22% + 14%);
+    }
+  }
+}
+
+/* ---------- Como funciona ----------
+   No computador os três painéis ficam lado a lado numa faixa, e o scroll vertical
+   desliza-a para a esquerda enquanto o palco está parado. A faixa anda o seu comprimento
+   menos a largura do ecrã. Sem suporte, os painéis ficam empilhados. */
+@supports (animation-timeline: view()) {
+  @media (min-width: 1024px) {
+    .apps-trilho {
+      height: 320vh;
+      view-timeline-name: --apps;
+    }
+    .apps-faixa {
+      flex-direction: row;
+      width: max-content;
+      gap: 1.5rem;
+      padding-inline: max(1.5rem, calc((100vw - 1240px) / 2 + 1.5rem));
+      animation: deslizar-apps linear both;
+      animation-timeline: --apps;
+      animation-range: contain 4% contain 96%;
+    }
+    @keyframes deslizar-apps {
+      to {
+        transform: translateX(calc(-100% + 100vw));
+      }
+    }
+    .apps-painel {
+      width: min(1120px, 84vw);
+    }
+    .apps-trilho .apps-painel.revelar {
+      animation: none;
+    }
+    .apps-linha {
+      animation: encher linear both;
+      animation-timeline: --apps;
+      animation-range: contain 4% contain 96%;
+    }
+  }
+}
+
+/* ---------- Os temas ----------
+   A fotografia cresce e o detalhe abre com grid-template-rows, que anima a altura sem medir nada. */
+.tema-foto {
+  width: 6.5rem;
+  height: 4.5rem;
+  transition:
+    width 500ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    height 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+/* No telemóvel só cresce em altura, para não apertar o texto ao lado. */
+.tema-foto-aberta {
+  width: 6.5rem;
+  height: 7.5rem;
+}
+@media (min-width: 640px) {
+  .tema-foto {
+    width: 8rem;
+    height: 5rem;
+  }
+  .tema-foto-aberta {
+    width: 15rem;
+    height: 10rem;
+  }
+}
+.tema-detalhe {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 500ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 400ms ease;
+}
+.tema-detalhe-aberto {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+/* Uma mensagem que aparece devagar (por exemplo, o pedido de demonstração enviado). */
+@keyframes sinal-aparece {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.sinal-aparece {
+  animation: sinal-aparece 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Os cartões das portas: sobem um pouco e a ilustração reage, sem saltos. */
+.cartao-porta {
+  transition:
+    transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.cartao-porta:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -36px rgba(22, 33, 58, 0.5);
+}
+.ilustracao-sobe {
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.cartao-porta:hover .ilustracao-sobe {
+  transform: translateY(-6px);
+}
+.ilustracao-marca {
+  transform-box: fill-box;
+  transform-origin: left center;
+  transition: transform 600ms cubic-bezier(0.6, 0, 0.2, 1);
+}
+.cartao-porta:hover .ilustracao-marca {
+  transform: scaleX(1.08);
+}
+@keyframes ondas {
+  50% {
+    opacity: 0.35;
+  }
+}
+.ilustracao-ondas {
+  animation: ondas 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revelar,
+  .revelar .marcado,
+  .ilustracao-ondas,
+  .momento-brilho,
+  .sinal-aparece,
+  .metodo-linha,
+  .apps-faixa,
+  .apps-linha,
+  .metodo-trilho .metodo-passo.revelar,
+  .metodo-letra,
+  .momento-foto,
+  .momento-aviso > div,
+  .momento-aviso .marcado {
+    animation: none;
+  }
+  .cartao-porta,
+  .ilustracao-sobe,
+  .ilustracao-marca,
+  .tema-foto,
+  .tema-detalhe {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marcado-anim,
+  .subir,
+  .emergir,
+  .pairar {
+    animation: none;
+  }
+  .anda-na-linha {
+    display: none;
+  }
+  .botao-marcador::before {
+    transition: none;
+  }
 }
