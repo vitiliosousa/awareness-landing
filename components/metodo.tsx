@@ -1,17 +1,18 @@
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { CallIcon, Cancel01Icon, Megaphone01Icon, PauseIcon } from "@hugeicons/core-free-icons";
+import { CallIcon, FlashIcon, LockKeyIcon, Megaphone01Icon, ViewIcon } from "@hugeicons/core-free-icons";
 
-// O método não depende do nome da plataforma: P-A-R-E fica, mesmo que o nome mude.
+// O método é o próprio nome: V-I-G-I-A. Se o nome mudar, estes passos têm de ser repensados.
 const passos = [
-  { letra: "P", resto: "arar", icone: PauseIcon, texto: "Olhar com calma: quem envia, o que pede e com que pressa. A maior parte dos ataques denuncia-se aqui." },
-  { letra: "A", resto: "veriguar", icone: CallIcon, texto: "Confirmar por outro canal: ligar para o número que já conhece, abrir a aplicação oficial." },
-  { letra: "R", resto: "ecusar", icone: Cancel01Icon, texto: "Não clicar, não pagar, não partilhar códigos nem palavras-passe enquanto houver dúvida." },
-  { letra: "E", resto: "ncaminhar", icone: Megaphone01Icon, texto: "Avisar quem trata da segurança. Se já clicou, avisar logo, sem vergonha: cada minuto conta." },
+  { letra: "V", resto: "er", icone: ViewIcon, texto: "Parar e olhar: quem envia, o que pede e com que pressa. A maior parte dos ataques denuncia-se aqui." },
+  { letra: "I", resto: "nvestigar", icone: CallIcon, texto: "Confirmar por outro canal: ligar para o número que já conhece, abrir a aplicação oficial." },
+  { letra: "G", resto: "uardar", icone: LockKeyIcon, texto: "Não clicar, não pagar, não partilhar códigos nem palavras-passe enquanto houver dúvida." },
+  { letra: "I", resto: "nformar", icone: Megaphone01Icon, texto: "Avisar quem trata da segurança. A mesma mensagem está quase sempre a chegar aos colegas." },
+  { letra: "A", resto: "gir", icone: FlashIcon, texto: "Se já clicou, agir logo: mudar a palavra-passe, ligar ao banco. Sem vergonha, sem esperar." },
 ];
 
 /**
- * O método P-A-R-E: quatro passos para qualquer mensagem suspeita, como o "APOIO" da Bonança.
+ * O método V-I-G-I-A: cinco passos para qualquer mensagem suspeita, como o "APOIO" da Bonança.
  * No computador a secção fica parada enquanto se rola, e os passos acendem um a um com o marcador
  * a avançar na linha. Sem suporte de animações ligadas ao scroll, os passos aparecem todos acesos.
  */
@@ -22,10 +23,10 @@ export function Metodo() {
         <div>
           <p className="revelar text-xs font-semibold uppercase tracking-[0.16em] text-suave">O método</p>
           <h2 id="t-metodo" className="revelar mt-3 text-[2.4rem] font-semibold leading-[1.05] sm:text-[3.2rem]">
-            Quatro passos. <span className="font-extrabold">Uma palavra: <span className="marcado">PARE.</span></span>
+            Cinco passos. <span className="font-extrabold">Uma palavra: <span className="marcado">VIGIA.</span></span>
           </h2>
           <p className="revelar mt-5 max-w-lg text-lg leading-relaxed text-suave">
-            Os mesmos quatro passos servem para qualquer mensagem suspeita: um email, um SMS, uma chamada, alguém à porta. <span className="font-semibold text-tinta">Cada exercício treina um deles</span>, até se tornarem um reflexo.
+            Os mesmos cinco passos servem para qualquer mensagem suspeita: um email, um SMS, uma chamada, alguém à porta. <span className="font-semibold text-tinta">Cada exercício treina um deles</span>, até se tornarem um reflexo.
           </p>
         </div>
         <div className="revelar relative overflow-hidden rounded-[28px]">
@@ -43,7 +44,7 @@ export function Metodo() {
             <div className="absolute inset-x-0 top-1/2 border-t border-dashed border-tinta/20" />
             <div className="metodo-linha absolute left-0 top-1/2 h-[5px] w-full -translate-y-1/2 origin-left rounded-full bg-marcador" />
           </div>
-          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {passos.map((p, i) => (
               <li key={i} className="metodo-passo revelar" style={{ ["--i" as string]: i }}>
                 <article className={`flex h-full flex-col rounded-[24px] p-6 ${i % 2 === 0 ? "bg-superficie ring-1 ring-tinta/[0.06]" : "bg-nevoa"}`}>

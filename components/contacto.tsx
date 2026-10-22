@@ -44,8 +44,8 @@ export function Contacto() {
 
         <div className="relative mx-auto grid max-w-[1240px] gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16 lg:py-24">
           <div>
-            <p className="revelar text-xs font-semibold uppercase tracking-[0.16em] text-marcador">Contacto</p>
-            <h2 id="t-contacto" className="revelar mt-3 text-[2.4rem] font-semibold leading-[1.05] sm:text-[3.2rem]">
+            <p className="subir text-xs font-semibold uppercase tracking-[0.16em] text-marcador">Pedir demonstração</p>
+            <h1 id="t-contacto" className="subir mt-3 text-[2.4rem] font-semibold leading-[1.05] sm:text-[3.2rem]">
               {/* Em fundo escuro o marcador cobre a palavra toda e vem já desenhado: o texto escuro nunca fica sobre o azul-tinta. */}
               Veja como seria{" "}
               <span className="font-extrabold">
@@ -54,7 +54,7 @@ export function Contacto() {
                   empresa.
                 </span>
               </span>
-            </h2>
+            </h1>
             <p className="revelar mt-5 max-w-md text-lg leading-relaxed text-white/70">
               Mostramos as duas apps por dentro, explicamos como corre um mês de treino e respondemos às suas perguntas. Sem compromisso.
             </p>

@@ -1,8 +1,9 @@
+import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 
-/** A faixa antes do contacto: uma frase grande e o pedido de demonstração, como no fim das páginas que funcionam. */
-export function FaixaFinal() {
+/** A faixa no fim das páginas: uma frase grande e o pedido de demonstração, como no fim das páginas que funcionam. */
+export function FaixaFinal({ outra = { href: "/plataforma", rotulo: "Conhecer a plataforma" } }: { outra?: { href: string; rotulo: string } | null }) {
   return (
     <section aria-labelledby="t-faixa" className="py-24 sm:py-32">
       <div className="mx-auto max-w-[1100px] px-4 text-center sm:px-6">
@@ -13,13 +14,15 @@ export function FaixaFinal() {
           </span>
         </h2>
         <div className="revelar mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
-          <a href="#contacto" className="botao-marcador inline-flex h-14 items-center rounded-full bg-tinta px-8 text-base font-semibold text-white transition-colors hover:text-tinta">
+          <Link href="/contacto" className="botao-marcador inline-flex h-14 items-center rounded-full bg-tinta px-8 text-base font-semibold text-white transition-colors hover:text-tinta">
             Pedir demonstração
-          </a>
-          <a href="#como-funciona" className="group inline-flex items-center gap-2 font-semibold text-tinta">
-            Rever como funciona
-            <HugeiconsIcon icon={ArrowDown01Icon} size={18} strokeWidth={2} className="rotate-180 transition-transform group-hover:-translate-y-0.5" />
-          </a>
+          </Link>
+          {outra && (
+            <Link href={outra.href} className="group inline-flex items-center gap-2 font-semibold text-tinta">
+              {outra.rotulo}
+              <HugeiconsIcon icon={ArrowRight01Icon} size={18} strokeWidth={2} className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          )}
         </div>
       </div>
     </section>

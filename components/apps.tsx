@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Calendar03Icon, Tick02Icon } from "@hugeicons/core-free-icons";
-import { JanelaGestor, MaoComApp } from "@/components/ecras";
+import { Janela } from "@/components/janela";
 import { NOME } from "@/lib/marca";
 
 type Painel = {
@@ -26,7 +26,7 @@ const paineis: Painel[] = [
     ),
     texto: "Cada pessoa recebe o desafio do mês por email e entra com um link, sem palavra-passe para esquecer. Funciona no computador do trabalho e também no telemóvel, com situações reais, em português.",
     pontos: ["Emails, mensagens, chamadas e visitas do dia a dia", "A resposta certa explicada logo a seguir", "Níveis e distintivos para manter o ritmo"],
-    visual: <MaoComApp />,
+    visual: <Janela src="/capturas/formando-inicio.png" alt="O início da app do formando: o desafio do mês, o nível e o ranking" />,
     fundo: "bg-nevoa",
   },
   {
@@ -39,7 +39,7 @@ const paineis: Painel[] = [
     ),
     texto: "Um painel só para a sua empresa, com a participação e o acerto de cada departamento e de cada tema, e quem precisa de acompanhamento.",
     pontos: ["Lembrete a quem ainda não fez, num clique", "Relatório mensal por email, pronto a partilhar", "Listas para exportar para o Excel"],
-    visual: <JanelaGestor />,
+    visual: <Janela src="/capturas/gestor-inicio.png" alt="O início da app do gestor: participação, acerto e o que há para tratar" tapar />,
     escuro: true,
     fundo: "bg-noite text-white",
   },
@@ -77,7 +77,7 @@ const paineis: Painel[] = [
  */
 export function Apps() {
   return (
-    <section id="como-funciona" aria-labelledby="t-apps" className="pt-24 sm:pt-32">
+    <section id="apps" aria-labelledby="t-apps" className="pt-24 sm:pt-32">
       <div className="mx-auto grid max-w-[1240px] gap-6 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] lg:items-end">
         <div>
           <p className="revelar text-xs font-semibold uppercase tracking-[0.16em] text-suave">Como funciona</p>

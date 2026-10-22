@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
-import { NOME } from "@/lib/marca";
+import { Cabecalho } from "@/components/cabecalho";
+import { Rodape } from "@/components/rodape";
+import { DESCRICAO, NOME, SITE_URL, SLOGAN } from "@/lib/marca";
 
 const schibsted = Schibsted_Grotesk({
   variable: "--font-schibsted",
@@ -15,15 +17,26 @@ const plexSans = IBM_Plex_Sans({
   weight: ["400", "500", "600"],
 });
 
+// A imagem de partilha vem de app/opengraph-image.tsx e o ícone de app/icon.svg; o Next junta-os aqui sozinho.
 export const metadata: Metadata = {
-  title: `${NOME} · Treino de cibersegurança para equipas`,
-  description: "Treino curto e mensal para as equipas das empresas moçambicanas reconhecerem burlas, emails falsos e engenharia social antes de clicar.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: `${NOME} · ${SLOGAN}`, template: `%s · ${NOME}` },
+  description: DESCRICAO,
+  applicationName: NOME,
+  keywords: ["cibersegurança", "awareness", "phishing", "formação em segurança", "engenharia social", "Moçambique", "empresas", "treino de equipas"],
+  alternates: { canonical: "/" },
+  openGraph: { type: "website", locale: "pt_MZ", siteName: NOME, title: `${NOME} · ${SLOGAN}`, description: DESCRICAO, url: "/" },
+  twitter: { card: "summary_large_image", title: `${NOME} · ${SLOGAN}`, description: DESCRICAO },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-MZ" className={`${schibsted.variable} ${plexSans.variable}`} suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <Cabecalho />
+        {children}
+        <Rodape />
+      </body>
     </html>
   );
 }

@@ -1,13 +1,9 @@
-import { Cabecalho } from "@/components/cabecalho";
-import { Rodape } from "@/components/rodape";
 import { ENTIDADE } from "@/lib/contactos";
 
 /** O molde das páginas legais: título, data de revisão, índice e o texto em secções numeradas. */
 export function PaginaLegal({ titulo, resumo, seccoes }: { titulo: string; resumo: string; seccoes: { id: string; titulo: string; corpo: React.ReactNode }[] }) {
   return (
-    <>
-      <Cabecalho />
-      <main className="pt-32 sm:pt-40">
+    <main className="pt-32 sm:pt-40">
         <div className="mx-auto max-w-[1240px] px-4 sm:px-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-suave">Última actualização: {ENTIDADE.actualizado}</p>
           <h1 className="mt-3 text-[2.6rem] font-extrabold leading-[1.05] sm:text-[3.6rem]">{titulo}</h1>
@@ -40,8 +36,6 @@ export function PaginaLegal({ titulo, resumo, seccoes }: { titulo: string; resum
             </article>
           </div>
         </div>
-      </main>
-      <Rodape />
-    </>
+    </main>
   );
 }

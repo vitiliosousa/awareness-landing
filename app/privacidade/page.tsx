@@ -4,7 +4,8 @@ import { CONTACTOS, ENTIDADE } from "@/lib/contactos";
 import { NOME } from "@/lib/marca";
 
 export const metadata: Metadata = {
-  title: `Política de privacidade · ${NOME}`,
+  title: "Política de privacidade",
+  alternates: { canonical: "/privacidade" },
   description: `Que dados o site do ${NOME} recolhe, para quê e como pode pedir para os ver, corrigir ou apagar.`,
 };
 

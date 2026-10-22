@@ -4,14 +4,12 @@ import { CONTACTOS } from "@/lib/contactos";
 import { NOME } from "@/lib/marca";
 
 const ligacoes = [
-  { href: "/#ataques", rotulo: "Os ataques" },
-  { href: "/#beneficios", rotulo: "O que a empresa ganha" },
-  { href: "/#metodo", rotulo: "O método PARE" },
-  { href: "/#como-funciona", rotulo: "Como funciona" },
-  { href: "/#para-quem", rotulo: "Para quem é" },
-  { href: "/#temas", rotulo: "Temas" },
-  { href: "/#perguntas", rotulo: "Perguntas frequentes" },
-  { href: "/#contacto", rotulo: "Pedir demonstração" },
+  { href: "/plataforma", rotulo: "Plataforma" },
+  { href: "/#metodo", rotulo: "O método VIGIA" },
+  { href: "/solucoes", rotulo: "Para quem é" },
+  { href: "/blog", rotulo: "Blog" },
+  { href: "/perguntas", rotulo: "Perguntas frequentes" },
+  { href: "/contacto", rotulo: "Pedir demonstração" },
 ];
 
 /** O rodapé: o resumo, as ligações, o contacto e o nome em grande, como o "BONANÇA" no fim da Bonança. */
@@ -24,7 +22,7 @@ export function Rodape() {
           <p className="mt-5 max-w-xs leading-relaxed text-white/65">Treino de cibersegurança para as equipas das empresas moçambicanas, com um desafio novo todos os meses.</p>
         </div>
         <nav aria-label="Rodapé">
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/45">Nesta página</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/60">Explorar</p>
           <ul className="mt-4 space-y-2.5">
             {ligacoes.map((l) => (
               <li key={l.href}>
@@ -36,7 +34,7 @@ export function Rodape() {
           </ul>
         </nav>
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/45">Contacto</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/60">Contacto</p>
           <ul className="mt-4 space-y-2.5 text-white/80">
             <li>
               <a href={`mailto:${CONTACTOS.email}`} className="break-all transition-colors hover:text-marcador">
@@ -56,7 +54,7 @@ export function Rodape() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-3 border-t border-white/10 px-6 py-6 text-sm text-white/45">
+      <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-3 border-t border-white/10 px-6 py-6 text-sm text-white/60">
         <p>
           {NOME} · Treino de cibersegurança para equipas
         </p>

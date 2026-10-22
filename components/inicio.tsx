@@ -1,6 +1,7 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
+import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowDown01Icon, Mail01Icon } from "@hugeicons/core-free-icons";
+import { ArrowRight01Icon, Mail01Icon } from "@hugeicons/core-free-icons";
 import { NOME } from "@/lib/marca";
 
 const letras = NOME.toUpperCase().split("");
@@ -10,7 +11,7 @@ const temas = ["Emails falsos", "Burlas por SMS e WhatsApp", "Engenharia social"
 /** Um email falso como os que a equipa treina a reconhecer, com o sinal assinalado a marcador. */
 function CartaoMensagem({ className = "" }: { className?: string }) {
   return (
-    <div className={`w-[17.5rem] rounded-[18px] bg-superficie p-4 shadow-[0_24px_50px_-24px_rgba(22,33,58,0.45)] ring-1 ring-tinta/5 ${className}`}>
+    <div className={`w-[20rem] rounded-[18px] bg-superficie p-4 shadow-[0_24px_50px_-24px_rgba(22,33,58,0.45)] ring-1 ring-tinta/5 ${className}`}>
       <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-suave">
         <HugeiconsIcon icon={Mail01Icon} size={15} strokeWidth={1.8} /> Email · agora
       </p>
@@ -68,6 +69,12 @@ function Linha() {
 }
 
 export function Inicio() {
+  const alt = "Quatro colegas de uma empresa a ver mensagens no telemóvel";
+  const {
+    props: { srcSet: equipaComputador },
+  } = getImageProps({ alt, src: "/fotos/1-recorte.png", width: 1536, height: 1024, sizes: "(min-width: 1024px) 58vw, 100vw" });
+  const { props: equipaTelemovel } = getImageProps({ alt, src: "/fotos/1b-recorte.png", width: 1024, height: 1536, sizes: "100vw", loading: "eager", fetchPriority: "high" });
+
   return (
     <section id="topo" className="relative overflow-hidden pt-24 sm:pt-28 lg:pt-[5.5rem]">
       {/* O disco e os anéis por trás da equipa: o raio de vigia, sem alarmes. */}
@@ -84,10 +91,20 @@ export function Inicio() {
           ))}
         </p>
 
-        {/* No telemóvel: a equipa vem logo a seguir à palavra, ao alto. */}
-        <div className="relative -mt-[11vw] lg:hidden">
-          <Image src="/fotos/1b-recorte.png" alt="Quatro colegas de uma empresa a ver mensagens no telemóvel" width={1024} height={1536} fetchPriority="high" sizes="100vw" className="subir mx-auto aspect-[0.84] w-full max-w-md object-cover object-bottom" style={{ animationDelay: "250ms" }} />
-          <CartaoMensagem className="pairar absolute -bottom-4 left-0 scale-[0.86] origin-bottom-left sm:left-6 sm:scale-100" />
+        {/*
+          A equipa: uma só imagem, que o <picture> troca entre a versão ao alto (telemóvel) e a deitada (computador).
+          Assim o browser descarrega só uma, já com prioridade, porque é o que mais se vê ao abrir a página.
+          No telemóvel fica logo a seguir à palavra; no computador passa para a direita, à frente da palavra gigante.
+        */}
+        <div className="pointer-events-none relative -mt-[11vw] lg:absolute lg:bottom-0 lg:right-[-2rem] lg:z-0 lg:mt-0 lg:w-[min(58vw,840px)]">
+          <picture>
+            <source media="(min-width: 1024px)" srcSet={equipaComputador} sizes="(min-width: 1024px) 58vw, 100vw" />
+            <img {...equipaTelemovel} alt={alt} className="subir mx-auto aspect-[0.84] w-full max-w-md object-cover object-bottom lg:aspect-[3/2] lg:max-w-none lg:object-contain" style={{ animationDelay: "250ms" }} />
+          </picture>
+          <div className="pointer-events-auto absolute -bottom-4 left-0 origin-bottom-left scale-[0.86] sm:left-6 sm:scale-100 lg:bottom-auto lg:-top-[30%] lg:left-[-4%]">
+            <CartaoMensagem className="pairar" />
+          </div>
+          <CartaoRelatorio className="subir pointer-events-auto absolute right-[-5%] top-[-22%] hidden lg:block" />
         </div>
 
         <div className="relative z-10 grid gap-10 pb-16 pt-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:pb-16 lg:pt-2">
@@ -105,13 +122,13 @@ export function Inicio() {
               Treino curto e mensal de cibersegurança para as equipas das empresas moçambicanas. Cada pessoa aprende a <span className="font-semibold text-tinta">reconhecer o sinal antes de clicar</span>, e quem gere vê quem treinou e onde a equipa ainda falha.
             </p>
             <div className="subir mt-8 flex flex-wrap items-center gap-x-6 gap-y-4" style={{ animationDelay: "600ms" }}>
-              <a href="#contacto" className="botao-marcador inline-flex h-14 items-center rounded-full bg-tinta px-8 text-base font-semibold text-white transition-colors hover:text-tinta">
+              <Link href="/contacto" className="botao-marcador inline-flex h-14 items-center rounded-full bg-tinta px-8 text-base font-semibold text-white transition-colors hover:text-tinta">
                 Pedir demonstração
-              </a>
-              <a href="#como-funciona" className="group inline-flex items-center gap-2 font-semibold text-tinta">
-                Como funciona
-                <HugeiconsIcon icon={ArrowDown01Icon} size={18} strokeWidth={2} className="transition-transform group-hover:translate-y-0.5" />
-              </a>
+              </Link>
+              <Link href="/plataforma" className="group inline-flex items-center gap-2 font-semibold text-tinta">
+                Conhecer a plataforma
+                <HugeiconsIcon icon={ArrowRight01Icon} size={18} strokeWidth={2} className="transition-transform group-hover:translate-x-0.5" />
+              </Link>
             </div>
             <div className="subir mt-8 flex items-center gap-4" style={{ animationDelay: "720ms" }}>
               <div className="flex -space-x-3">
@@ -127,15 +144,6 @@ export function Inicio() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* No computador: a equipa à direita, à frente da palavra gigante, que pode ficar parcialmente tapada. */}
-      <div className="pointer-events-none absolute bottom-[3.25rem] right-[max(0px,calc((100vw-1240px)/2-2rem))] z-0 hidden w-[min(58vw,840px)] lg:block">
-        <Image src="/fotos/1-recorte.png" alt="Quatro colegas de uma empresa a ver mensagens no telemóvel" width={1536} height={1024} fetchPriority="high" sizes="(min-width: 1024px) 58vw, 0px" className="subir h-auto w-full" style={{ animationDelay: "250ms" }} />
-        <div className="pointer-events-auto absolute -top-[30%] left-[-4%]">
-          <CartaoMensagem className="pairar" />
-        </div>
-        <CartaoRelatorio className="subir pointer-events-auto absolute right-[-5%] top-[-22%]" />
       </div>
 
       {/* Os temas a passar devagar no fundo da secção. */}

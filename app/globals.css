@@ -220,7 +220,7 @@ h3 {
 @supports (animation-timeline: view()) {
   @media (min-width: 1024px) {
     .metodo-trilho {
-      height: 220vh;
+      height: 240vh;
       view-timeline-name: --metodo;
     }
     @keyframes encher {
@@ -245,7 +245,7 @@ h3 {
     .metodo-trilho .metodo-passo.revelar {
       animation: acender-passo linear both;
       animation-timeline: --metodo;
-      animation-range: contain calc(var(--i) * 22%) contain calc(var(--i) * 22% + 12%);
+      animation-range: contain calc(var(--i) * 17%) contain calc(var(--i) * 17% + 10%);
     }
     @keyframes letra-marcada {
       from {
@@ -262,7 +262,7 @@ h3 {
       background-size: 100% 34%;
       animation: letra-marcada linear both;
       animation-timeline: --metodo;
-      animation-range: contain calc(var(--i) * 22% + 7%) contain calc(var(--i) * 22% + 14%);
+      animation-range: contain calc(var(--i) * 17% + 6%) contain calc(var(--i) * 17% + 12%);
     }
   }
 }

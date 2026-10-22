@@ -5,7 +5,8 @@ import { CONTACTOS, ENTIDADE } from "@/lib/contactos";
 import { NOME } from "@/lib/marca";
 
 export const metadata: Metadata = {
-  title: `Termos de uso · ${NOME}`,
+  title: "Termos de uso",
+  alternates: { canonical: "/termos" },
   description: `As regras de utilização do site do ${NOME}.`,
 };
 
