@@ -12,7 +12,7 @@ export function Momento() {
   return (
     <section aria-labelledby="t-momento" className="px-3 sm:px-4">
       <div className="momento relative mx-auto max-w-[1440px] overflow-hidden rounded-[32px] bg-noite">
-        <div className="relative aspect-[10/17] sm:aspect-[16/10] lg:aspect-[16/8.4]">
+        <div className="relative aspect-[10/17] sm:aspect-[16/10] lg:aspect-[16/8.4] baixo:aspect-[16/7]">
           <Image src="/fotos/2.png" alt="Um telemóvel em cima de uma secretária, com o ecrã a acender" fill sizes="100vw" className="momento-foto object-cover object-[52%_62%]" />
           {/* O ecrã do telemóvel a acender. */}
           <div aria-hidden="true" className="momento-brilho pointer-events-none absolute left-[52%] top-[62%] h-[30%] w-[38%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(255,255,255,0.75),rgba(230,236,255,0.25)_55%,transparent)] mix-blend-screen" />

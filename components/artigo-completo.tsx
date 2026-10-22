@@ -76,7 +76,7 @@ export function ArtigoCompleto({ a }: { a: Artigo }) {
         </header>
 
         <div className="subir mx-auto mt-10 max-w-[1100px] px-4 sm:px-6" style={{ animationDelay: "240ms" }}>
-          <div className="relative aspect-[16/8] overflow-hidden rounded-[28px]">
+          <div className="relative aspect-[16/8] overflow-hidden rounded-[28px] baixo:aspect-[16/6]">
             <Image src={a.capa} alt={a.capaAlt} fill loading="eager" sizes="(min-width: 1100px) 1100px, 100vw" className="object-cover" />
           </div>
         </div>

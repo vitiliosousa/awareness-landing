@@ -55,7 +55,7 @@ const paineis: Painel[] = [
     pontos: ["Um desafio novo por mês, pensado para ataques reais", "Convites e lembretes enviados por nós", "Certificado para quem chega ao acerto mínimo"],
     visual: (
       <div className="relative mx-auto w-full max-w-[460px]">
-        <Image src="/fotos/16.png" alt="Um especialista de apoio com auscultadores, numa secretária" width={1024} height={1536} sizes="(min-width: 1024px) 460px, 90vw" className="aspect-[4/5] w-full rounded-[28px] object-cover object-top" />
+        <Image src="/fotos/16.png" alt="Um especialista de apoio com auscultadores, numa secretária" width={1024} height={1536} sizes="(min-width: 1024px) 460px, 90vw" className="aspect-[4/5] w-full rounded-[28px] object-cover object-top baixo:aspect-[5/4]" />
         <div className="absolute -left-4 bottom-8 rounded-[18px] bg-superficie p-4 text-tinta shadow-[0_24px_50px_-24px_rgba(22,33,58,0.5)] ring-1 ring-tinta/5 sm:-left-8">
           <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-suave">
             <HugeiconsIcon icon={Calendar03Icon} size={15} strokeWidth={1.8} /> Próximo desafio
@@ -95,12 +95,12 @@ export function Apps() {
           <ol className="apps-faixa flex flex-col gap-5 px-4 sm:px-6">
             {paineis.map((p) => (
               <li key={p.id} id={p.id} className="apps-painel revelar shrink-0">
-                <article className={`grid h-full items-center gap-10 rounded-[32px] p-7 sm:p-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 lg:p-14 ${p.fundo}`}>
+                <article className={`grid h-full items-center gap-10 rounded-[32px] p-7 sm:p-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-12 lg:p-14 baixo:gap-10 baixo:p-9 ${p.fundo}`}>
                   <div>
                     <p className={`text-xs font-semibold uppercase tracking-[0.16em] ${p.escuro ? "text-marcador" : "text-suave"}`}>{p.quem}</p>
-                    <h3 className="mt-3 text-[1.9rem] font-medium leading-[1.1] sm:text-[2.4rem]">{p.titulo}</h3>
-                    <p className={`mt-5 text-lg leading-relaxed ${p.escuro ? "text-white/70" : "text-suave"}`}>{p.texto}</p>
-                    <ul className="mt-7 space-y-3">
+                    <h3 className="mt-3 text-[1.9rem] font-medium leading-[1.1] sm:text-[2.4rem] baixo:text-[2rem]">{p.titulo}</h3>
+                    <p className={`mt-5 text-lg leading-relaxed baixo:mt-3 baixo:text-base ${p.escuro ? "text-white/70" : "text-suave"}`}>{p.texto}</p>
+                    <ul className="mt-7 space-y-3 baixo:mt-5 baixo:space-y-2">
                       {p.pontos.map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-marcador text-noite">
@@ -118,7 +118,7 @@ export function Apps() {
           </ol>
 
           {/* Onde se está: os três nomes e a linha do marcador por baixo. Só no computador. */}
-          <div aria-hidden="true" className="mx-auto mt-8 hidden w-full max-w-[1240px] px-6 lg:block">
+          <div aria-hidden="true" className="mx-auto mt-8 hidden w-full max-w-[1240px] px-6 lg:block baixo:mt-4">
             <div className="relative h-[5px] rounded-full bg-tinta/10">
               <div className="apps-linha absolute inset-0 origin-left rounded-full bg-marcador" />
             </div>

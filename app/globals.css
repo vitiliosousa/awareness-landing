@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Computadores com ecrã baixo: um portátil de 1366×768 com o Windows a 125% fica com uns 1093×530 úteis no browser.
+   Aí o início e as secções paradas encolhem para caber, sem mexer no que se vê num ecrã mais alto. */
+@custom-variant baixo (@media (min-width: 64rem) and (max-height: 760px));
+
 /* Os mesmos tokens das apps (paleta Vigia, versão clara).
    A landing é sempre clara; as secções escuras usam "noite". O amarelo é o marcador:
    só aparece para assinalar um sinal de alerta e no gesto do botão principal. */
@@ -38,6 +42,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Num computador de ecrã baixo, tudo o que está em rem (espaços, textos, cartões) encolhe um pouco. */
+  @variant baixo {
+    font-size: 93.75%;
+  }
 }
 
 body {

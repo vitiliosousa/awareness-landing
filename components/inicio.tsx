@@ -76,14 +76,14 @@ export function Inicio() {
   const { props: equipaTelemovel } = getImageProps({ alt, src: "/fotos/1b-recorte.png", width: 1024, height: 1536, sizes: "100vw", loading: "eager", fetchPriority: "high" });
 
   return (
-    <section id="topo" className="relative overflow-hidden pt-24 sm:pt-28 lg:pt-[5.5rem]">
+    <section id="topo" className="relative overflow-hidden pt-24 sm:pt-28 lg:pt-[5.5rem] baixo:pt-[4.75rem]">
       {/* O disco e os anéis por trás da equipa: o raio de vigia, sem alarmes. */}
       <div aria-hidden="true" className="pointer-events-none absolute -right-[12vw] top-[16vw] hidden aspect-square w-[64vw] max-w-[900px] rounded-full bg-nevoa lg:block" />
       <div aria-hidden="true" className="pointer-events-none absolute -right-[22vw] top-[6vw] hidden aspect-square w-[84vw] max-w-[1180px] rounded-full border border-tinta/[0.07] lg:block" />
       <Linha />
 
       <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6">
-        <p aria-hidden="true" className="flex select-none justify-center overflow-hidden font-titulo text-[25vw] font-black leading-[0.82] tracking-[-0.06em] lg:text-[min(18vw,17rem)]">
+        <p aria-hidden="true" className="flex select-none justify-center overflow-hidden font-titulo text-[25vw] font-black leading-[0.82] tracking-[-0.06em] lg:text-[min(18vw,17rem)] baixo:text-[min(18vw,25svh)]">
           {letras.map((l, i) => (
             <span key={i} className="emergir inline-block bg-gradient-to-b from-[#bcc4d1] to-[#d9dee5] bg-clip-text text-transparent" style={{ animationDelay: `${120 + i * 70}ms` }}>
               {l}
@@ -96,20 +96,20 @@ export function Inicio() {
           Assim o browser descarrega só uma, já com prioridade, porque é o que mais se vê ao abrir a página.
           No telemóvel fica logo a seguir à palavra; no computador passa para a direita, à frente da palavra gigante.
         */}
-        <div className="pointer-events-none relative -mt-[11vw] lg:absolute lg:bottom-0 lg:right-[-2rem] lg:z-0 lg:mt-0 lg:w-[min(58vw,840px)]">
+        <div className="pointer-events-none relative -mt-[11vw] lg:absolute lg:bottom-0 lg:right-[-2rem] lg:z-0 lg:mt-0 lg:w-[min(58vw,840px)] baixo:w-[min(52vw,100svh)]">
           <picture>
             <source media="(min-width: 1024px)" srcSet={equipaComputador} sizes="(min-width: 1024px) 58vw, 100vw" />
             <img {...equipaTelemovel} alt={alt} className="subir mx-auto aspect-[0.84] w-full max-w-md object-cover object-bottom lg:aspect-[3/2] lg:max-w-none lg:object-contain" style={{ animationDelay: "250ms" }} />
           </picture>
-          <div className="pointer-events-auto absolute -bottom-4 left-0 origin-bottom-left scale-[0.86] sm:left-6 sm:scale-100 lg:bottom-auto lg:-top-[30%] lg:left-[-4%]">
+          <div className="pointer-events-auto absolute -bottom-4 left-0 origin-bottom-left scale-[0.86] sm:left-6 sm:scale-100 lg:bottom-auto lg:-top-[30%] lg:left-[-4%] baixo:top-auto baixo:bottom-[10%] baixo:left-[-6%] baixo:scale-[0.85]">
             <CartaoMensagem className="pairar" />
           </div>
-          <CartaoRelatorio className="subir pointer-events-auto absolute right-[-5%] top-[-22%] hidden lg:block" />
+          <CartaoRelatorio className="subir pointer-events-auto absolute right-14 top-[-22%] hidden origin-top-right lg:block min-[1400px]:right-[-5%] baixo:top-auto baixo:bottom-[10%] baixo:right-12 baixo:origin-bottom-right baixo:scale-[0.85]" />
         </div>
 
-        <div className="relative z-10 grid gap-10 pb-16 pt-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:pb-16 lg:pt-2">
+        <div className="relative z-10 grid gap-10 pb-16 pt-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:pb-16 lg:pt-2 baixo:pb-10">
           <div className="max-w-xl lg:max-w-[33rem]">
-            <h1 className="subir text-[2.4rem] font-semibold leading-[1.04] sm:text-5xl lg:text-[3.3rem]" style={{ animationDelay: "350ms" }}>
+            <h1 className="subir text-[2.4rem] font-semibold leading-[1.04] sm:text-5xl lg:text-[3.3rem] baixo:text-[2.6rem]" style={{ animationDelay: "350ms" }}>
               O ataque chega por mensagem.{" "}
               <span className="font-extrabold">
                 A defesa{" "}
@@ -118,10 +118,10 @@ export function Inicio() {
                 </span>
               </span>
             </h1>
-            <p className="subir mt-5 max-w-lg text-lg leading-relaxed text-suave" style={{ animationDelay: "480ms" }}>
+            <p className="subir mt-5 max-w-lg text-lg leading-relaxed text-suave baixo:mt-4 baixo:text-base" style={{ animationDelay: "480ms" }}>
               Treino curto e mensal de cibersegurança para as equipas das empresas moçambicanas. Cada pessoa aprende a <span className="font-semibold text-tinta">reconhecer o sinal antes de clicar</span>, e quem gere vê quem treinou e onde a equipa ainda falha.
             </p>
-            <div className="subir mt-8 flex flex-wrap items-center gap-x-6 gap-y-4" style={{ animationDelay: "600ms" }}>
+            <div className="subir mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 baixo:mt-6" style={{ animationDelay: "600ms" }}>
               <Link href="/contacto" className="botao-marcador inline-flex h-14 items-center rounded-full bg-tinta px-8 text-base font-semibold text-white transition-colors hover:text-tinta">
                 Pedir demonstração
               </Link>
@@ -130,7 +130,7 @@ export function Inicio() {
                 <HugeiconsIcon icon={ArrowRight01Icon} size={18} strokeWidth={2} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
-            <div className="subir mt-8 flex items-center gap-4" style={{ animationDelay: "720ms" }}>
+            <div className="subir mt-8 flex items-center gap-4 baixo:hidden" style={{ animationDelay: "720ms" }}>
               <div className="flex -space-x-3">
                 {rostos.map((src) => (
                   <Image key={src} src={src} alt="" width={96} height={96} className="h-11 w-11 rounded-full object-cover ring-[3px] ring-papel" />
